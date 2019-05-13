@@ -16,13 +16,14 @@ PORT = 5000
 HOST = '0.0.0.0'
 
 app = Flask(__name__)
+app.secret_key = 'passwordHARD2guess1234567890'
+
 
 @app.before_request
 def before_request():
     """Connect to DB before each request, using the 'g' variable"""
     g.db = models.DATABASE
     g.db.connect()
-    #g.user = current_user
 
 
 @app.after_request
@@ -40,7 +41,20 @@ def index():
 
 @app.route('/entries/new/', methods=['POST','GET'])
 def new_entry():
-    return render_template('new.html')
+    form = forms.EntryForm()
+    if form.validate_on_submit():
+        #validate_on_submit check if it's a POST request and if it's valid
+        models.Entry.create_entry(
+                                 entry=g.entry_id,
+                                 title= form.title.data.strip(),
+                                 date = form.date.data.strip(),
+                                 timespent = form.timespent.data.strip(),
+                                 learned = form.learned.data.strip(),
+                                 resources = form.resources.data.strip()
+                                 )
+        flash("Task successfully registered!", "success")
+        return redirect(url_for('index'))
+    return render_template('new.html', form=form)
 
 
 @app.route('/entries/<id>/', methods=['POST','GET'])

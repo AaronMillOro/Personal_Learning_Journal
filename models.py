@@ -6,8 +6,8 @@ from peewee import *
 
 DATABASE = SqliteDatabase('learn_journal.db')
 
-
-class Entry(UserMixin,Model):
+#class Entry(UserMixin,Model):
+class Entry(Model):
     """Peewee model class for adding and/or editing entries"""
     title = CharField()
     date = DateTimeField(default=datetime.datetime.now)
@@ -24,7 +24,7 @@ class Entry(UserMixin,Model):
 
     @classmethod
     def create_entry(cls, title, date, timespent,
-                    learned, resources, admin=True):
+                    learned, resources):
         with DATABASE.transaction():
             cls.create(
                        title = title,
