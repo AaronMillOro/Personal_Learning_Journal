@@ -6,15 +6,14 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-datetime = "*"
 flask = "*"
+datetime = "*"
+peewee = "*"
 flask-bcrypt = "*"
 flask-login = "*"
 flask-wtf = "*"
 wtforms = "*"
 wtforms-validators = "*"
-peewee = "*"
-wtf-validators = "*"
 
 [requires]
 python_version = "3.6"
