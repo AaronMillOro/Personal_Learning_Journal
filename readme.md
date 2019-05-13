@@ -11,15 +11,15 @@ The application lets the user add or edit journal entries. When adding or editin
 	* **/** - the homepage .
 	* **/entries** - also will act as listing route
 	* **/entries/new** - to create a route
-	* **/entries/< id > ** - the detail route
+	* **/entries/< id >** - the detail route
 	* **/entries/< id >/edit** - the edit/update route
 	* **/entries/< id >/delete** - to delete a given route
 
 
 * The listing view is located in **" / "** and **" /entries "**.  This view render a listing page of all of the journal entries, where each entry displays the following fields:
 
-	* ** Title ** - is a linked title, clicking it routes user to the detail page for the clicked entry.
-	* **Date ** - date of creation is listed.
+	* **Title** - is a linked title, clicking it routes user to the detail page for the clicked entry.
+	* **Date** - date of creation is listed.
 
 * The add view (**"/entries/new"**) allows the user to add a journal entry with the following fields:
 
