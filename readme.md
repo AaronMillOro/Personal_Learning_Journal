@@ -7,53 +7,36 @@ The application lets the user add or edit journal entries. When adding or editin
 
 ## Project details
 * The application contains the following routes:
->
-**/** - the homepage .
-**/entries** - also will act as listing route
-**/entries/new** - to create a route
-**/entries/< id > ** - the detail route
-**/entries/< id >/edit** - the edit/update route
-**/entries/< id >/delete** - to delete a given route
+
+	* **/** - the homepage .
+	* **/entries** - also will act as listing route
+	* **/entries/new** - to create a route
+	* **/entries/< id > ** - the detail route
+	* **/entries/< id >/edit** - the edit/update route
+	* **/entries/< id >/delete** - to delete a given route
 
 
 * The listing view is located in **" / "** and **" /entries "**.  This view render a listing page of all of the journal entries, where each entry displays the following fields:
->
-** Title ** - should be a linked title, clicking it routes user to the detail page for the clicked entry.
-** Date ** - the date of creation is listed.
 
-*  The details view (**" /entries/< id >"**) renders a detail page of a journal entry with the following items:
->**
-Title
-Date
-Time Spent
-What You Learned
-Resources to Remember**
->
-This page contains a link/button that takes the user to the Edit route for the Entry with the < id >.
+	* ** Title ** - is a linked title, clicking it routes user to the detail page for the clicked entry.
+	* **Date ** - date of creation is listed.
 
-* The add view (**"/entries/new"**) that allows the user to add a journal entry with the following fields:
->
-**Title** - string
-**Date** - date
-**Time Spent** - integer
-**What You Learned** - text
-**Resources to Remember** - text
->
-The page presents a new _blank Entry_ form that allows the user to _Create_ a new entry that will be stored in the database.
+* The add view (**"/entries/new"**) allows the user to add a journal entry with the following fields:
+
+	* **Title** - string
+	* **Date** - date
+	* **Time Spent** - integer
+	* **What You Learned** - text
+	* **Resources to Remember** - text
+
+>The page presents a new _blank Entry_ form that allows the user to _Create_ a new entry that is stored in the database.
+
+
+*  The details view (**" /entries/< id >"**) renders a detail page of a journal entry with the ** Title, Date,  Time spent, What you learned and Resources to remember** items.
 
 * The edit view (**" /entries/< id >/edit"**) allows the user to edit the journal entry with a given **id**
->
-**Title
-Date
-Time Spent
-What You Learned
-Resources to Remember**
->
-Each form field contains the existing data on load.
->
-NOTE: Updating an Entry should not result in a new Entry being created, this behavior would not be seen as editing this would be adding a new entry. To check this, you can simply make an edit and then reload the listing page to see if a duplicate record was created.
 
-* The supplied **HTML** and **CSS** are stored in the folders _**templates**_ and _**static**_, respectively. 
+* The supplied **HTML** and **CSS** files are stored in the folders _**templates**_ and _**static**_, respectively. 
 
 * Python coding style complies with the PEP 8 guidelines.
 
