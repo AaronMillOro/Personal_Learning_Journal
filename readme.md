@@ -3,7 +3,7 @@ The following project is an interface for a learning journal web application.
 
 The main (index) page lists journal entry titles and dates. Each journal entry title links to a detail page that displays the title, date, time spent, the journal entry, and related resources .
 
-The application lets the user add or edit journal entries. When adding or editing a journal entry, the application prompts the user for title, date, time spent, what they learned, and resources to remember. The results for these entries are stored in a database (**Sqlite**) and displayed in a blog style website. HTML and CSS files were provided for this app.
+The application lets the user add or edit journal entries. When adding or editing a journal entry, the application prompts the user for title, date, time spent, what they learned, and resources to remember. The results for these entries are stored in a database (**Sqlite**) and displayed in a blog style website. Design was provided with **CSS** files and **HTML** files were refactored.
 
 ## Project details
 * The application contains the following routes:
@@ -40,4 +40,4 @@ The application lets the user add or edit journal entries. When adding or editin
 
 * Python coding style complies with the PEP 8 guidelines.
 
-* Dependencies used in this app are listed in the **requirements.txt** file.
+* Dependencies used in this app are listed in the [**Pipfile**](https://github.com/AaronMillOro/Personal_Learning_Journal/blob/master/Pipfile).
