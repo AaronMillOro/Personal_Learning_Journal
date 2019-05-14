@@ -37,7 +37,9 @@ def after_request(response):
 @app.route('/entries/')
 def index():
     """Listing of all registered entries"""
-    entries = models.Entry.select().order_by(models.Entry.date.desc()).limit(20)
+    entries = models.Entry.select().order_by(
+                                             models.Entry.date.desc()
+                                            ).limit(20)
     return render_template('index.html', entries = entries)
 
 
@@ -58,7 +60,7 @@ def new_entry():
     return render_template('new.html', form=form)
 
 
-@app.route('/entries/<entry_id>/', methods=['POST','GET'])
+@app.route('/entries/<int:entry_id>/', methods=['POST','GET'])
 def entry_detail(entry_id):
     """Information items from an entry"""
     try:
@@ -68,7 +70,7 @@ def entry_detail(entry_id):
     except ValueError:
         abort(404)
     else:
-        return render_template('detail.html', entry_id = entry)
+        return render_template('detail.html', entry = entry)
 
 
 @app.route('/entries/<id>/edit/', methods=['POST','GET'])
