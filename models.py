@@ -16,7 +16,7 @@ class Entry(Model):
 
     class Meta:
         database = DATABASE
-        order_by = ('-date',)
+        order_by = ('date',)
 
     def get_entry(self):
         return Entry.select().where(Entry.title == self)
