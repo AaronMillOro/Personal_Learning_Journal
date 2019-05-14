@@ -4,7 +4,7 @@ Project 5 - Personal Journal Learning
 --------------------------------
 """
 from flask import (Flask, g, render_template, flash, redirect, url_for,
-                   abort)
+                   abort, request)
 
 from peewee import *
 
@@ -33,10 +33,11 @@ def after_request(response):
     return response
 
 
-@app.route('/', methods=['POST','GET'])
-@app.route('/entries/', methods=['POST','GET'])
+@app.route('/')
+@app.route('/entries/')
 def index():
-    return render_template('index.html')
+    entries = models.Entry.select().limit(20)
+    return render_template('index.html', entries = entries)
 
 
 @app.route('/entries/new/', methods=['POST','GET'])
@@ -44,20 +45,19 @@ def new_entry():
     form = forms.EntryForm()
     if form.validate_on_submit():
         #validate_on_submit check if it's a POST request and if it's valid
-        models.Entry.create_entry(
-                                 entry=g.entry_id,
-                                 title= form.title.data.strip(),
-                                 date = form.date.data.strip(),
-                                 timespent = form.timespent.data.strip(),
-                                 learned = form.learned.data.strip(),
-                                 resources = form.resources.data.strip()
-                                 )
-        flash("Task successfully registered!", "success")
-        return redirect(url_for('index'))
+        entry = models.Entry.create_entry(
+            title= form.title.data,
+            date = form.date.data,
+            timespent = form.timespent.data,
+            learned = form.learned.data,
+            resources = form.resources.data
+            )
+        flash('Task successfully registered!')
+        return redirect(url_for('index', entry_id = entry))
     return render_template('new.html', form=form)
 
 
-@app.route('/entries/<id>/', methods=['POST','GET'])
+@app.route('/entries/<int:entry_id>/', methods=['POST','GET'])
 def entry_details():
     return render_template('detail.html')
 

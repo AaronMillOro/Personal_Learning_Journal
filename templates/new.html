@@ -2,14 +2,16 @@
 
 {% block content %}
 
+<div class="new-entry">
   <form method="POST" action=""  class="form">
+  <h2> NEW ENTRY </h2>
 
   {% for field in form %}
-  {{ field(placeholder=field.label.text) }}
+    {{ field(placeholder=field.label.text) }}
   {% endfor %}
 
   <input type="submit" id ="submit" value="Publish Entry" class="button">
   <a href="{{ url_for('index') }}" class="button button-secondary">Cancel</a>
   </form>
-
+</div>
 {% endblock %}

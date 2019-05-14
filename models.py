@@ -1,14 +1,13 @@
 import datetime
 
+from flask_bcrypt import generate_password_hash
 from flask_login import UserMixin
-
 from peewee import *
 
 DATABASE = SqliteDatabase('learn_journal.db')
 
-#class Entry(UserMixin,Model):
 class Entry(Model):
-    """Peewee model class for adding and/or editing entries"""
+    """Peewee model class for entries"""
     title = CharField()
     date = DateTimeField(default=datetime.datetime.now)
     timespent = IntegerField()
@@ -23,8 +22,7 @@ class Entry(Model):
         return Entry.select().where(Entry.title == self)
 
     @classmethod
-    def create_entry(cls, title, date, timespent,
-                    learned, resources):
+    def create_entry(cls, title, date, timespent, learned, resources):
         with DATABASE.transaction():
             cls.create(
                        title = title,
