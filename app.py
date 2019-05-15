@@ -56,7 +56,7 @@ def new_entry():
             resources = form.resources.data
             )
         flash('Task successfully registered!')
-        return redirect(url_for('index', entry_id = entry))
+        return redirect(url_for('index', entry_id=entry))
     return render_template('new.html', form=form)
 
 
@@ -70,11 +70,12 @@ def entry_detail(entry_id):
     except ValueError:
         abort(404)
     else:
-        return render_template('detail.html', entry = entry)
+        return render_template('detail.html', entry=entry)
 
 
 @app.route('/entries/<int:entry_id>/edit/', methods=['POST','GET'])
 def edit_entry(entry_id):
+    """Modify an existing entry"""
     try:
         entry = models.Entry.get(models.Entry.id == entry_id)
         form = forms.EntryForm(obj=entry)
@@ -84,22 +85,28 @@ def edit_entry(entry_id):
         abort(404)
     else:
         if form.validate_on_submit():
-            entry.delete_instance()
-            modified_entry = models.Entry.create_entry(
-                title= form.title.data,
-                date = form.date.data,
-                timespent = form.timespent.data,
-                learned = form.learned.data,
-                resources = form.resources.data
-                )
-            flash('Task successfully modified!')
-            return redirect(url_for('index'))
-    return render_template('edit.html', entry_id = entry, form=form)
+            if 'update' in request.form:
+                entry.delete_instance()
+                edited_entry = models.Entry.create(
+                    title= form.title.data,
+                    date = form.date.data,
+                    timespent = form.timespent.data,
+                    learned = form.learned.data,
+                    resources = form.resources.data
+                    )
+                flash('"{}" successfully modified!'.format(edited_entry.title))
+                return redirect(url_for('index'))
+            elif 'delete' in request.form:
+                entry.delete_instance()
+                flash('"{}" was removed u_u'.format(entry.title))
+                return redirect(url_for('delete_entry', title = entry.title))
+    return render_template('edit.html', entry_id=entry_id, form=form)
 
 
 @app.route('/entries/delete/', methods=['POST','GET'])
 def delete_entry():
-    return render_template('index.html')
+    """Remove an entry"""
+    return render_template('deleted.html')
 
 
 @app.errorhandler(404)

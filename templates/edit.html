@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+
 {% block content %}
 
 <div class="edit-entry">
@@ -9,8 +10,8 @@
     {{ field(placeholder=field.label.text) }}
   {% endfor %}
 
-  <input type="submit" id="submit" value="Update Entry" class="button">
-  <a href="{{ url_for('index') }}" class="button button-secondary">Delete Entry</a>
+  <input type="submit" name="update" value="Update Entry" class="button">
+  <input type="submit" name="delete" value="Delete Entry" class="button button-secondary">
   </form>
 
 </div>
