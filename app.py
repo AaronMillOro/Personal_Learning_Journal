@@ -73,12 +73,23 @@ def entry_detail(entry_id):
         return render_template('detail.html', entry = entry)
 
 
-@app.route('/entries/<id>/edit/', methods=['POST','GET'])
-def edit_entry():
-    return render_template('edit.html')
+@app.route('/entries/<int:entry_id>/edit/', methods=['POST','GET'])
+def edit_entry(entry_id):
+    try:
+        entry = models.Entry.get(models.Entry.id == entry_id)
+        form = forms.EntryForm(obj=entry)
+        if form.validate_on_submit():
+            entry.update(form)
+            flash('Task successfully modified!')
+            return redirect(url_for('index', entry_id = entry))
+    except IndexError:
+        abort(404)
+    except ValueError:
+        abort(404)
+    return render_template('edit.html', entry = entry)
 
 
-@app.route('/entries/<id>/delete/', methods=['POST','GET'])
+@app.route('/entries/delete/', methods=['POST','GET'])
 def delete_entry():
     return render_template('index.html')
 
