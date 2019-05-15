@@ -78,15 +78,23 @@ def edit_entry(entry_id):
     try:
         entry = models.Entry.get(models.Entry.id == entry_id)
         form = forms.EntryForm(obj=entry)
-        if form.validate_on_submit():
-            entry.update(form)
-            flash('Task successfully modified!')
-            return redirect(url_for('index', entry_id = entry))
     except IndexError:
         abort(404)
     except ValueError:
         abort(404)
-    return render_template('edit.html', entry = entry)
+    else:
+        if form.validate_on_submit():
+            entry.delete_instance()
+            modified_entry = models.Entry.create_entry(
+                title= form.title.data,
+                date = form.date.data,
+                timespent = form.timespent.data,
+                learned = form.learned.data,
+                resources = form.resources.data
+                )
+            flash('Task successfully modified!')
+            return redirect(url_for('index'))
+    return render_template('edit.html', entry_id = entry, form=form)
 
 
 @app.route('/entries/delete/', methods=['POST','GET'])

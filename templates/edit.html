@@ -2,17 +2,15 @@
 {% block content %}
 
 <div class="edit-entry">
-  <h2>EDIT ENTRY</h2>
+  <form method='POST' action=""  class="form">
+  <h2> EDIT ENTRY </h2>
 
-  <form method='POST' action=''>
+  {% for field in form %}
+    {{ field(placeholder=field.label.text) }}
+  {% endfor %}
 
-    {% for field in form %}
-      {{ field(placeholder=field.label.text) }}
-    {% endfor %}
-
-  <div class="u-full-width">
-    <input type="submit" value="Update Entry" class="button">
-    <a href="{{ url_for('index') }}" class="button button-secondary">Delete Entry</a>
+  <input type="submit" id="submit" value="Update Entry" class="button">
+  <a href="{{ url_for('index') }}" class="button button-secondary">Delete Entry</a>
   </form>
 
 </div>
