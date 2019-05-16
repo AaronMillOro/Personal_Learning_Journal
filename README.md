@@ -40,7 +40,7 @@ The application lets the user add or edit journal entries. When adding or editin
 
 * Python coding style complies with the PEP 8 guidelines.
 
-* Dependencies used in this app are listed in  [**Pipfile**](https://github.com/AaronMillOro/Personal_Learning_Journal/blob/master/Pipfile).
+* Dependencies used in this app are listed in  [**requirements.txt**](https://github.com/AaronMillOro/Personal_Learning_Journal/blob/master/requirements.txt).
 
 ## Test the application in terminal
 
