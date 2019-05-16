@@ -42,10 +42,24 @@ The application lets the user add or edit journal entries. When adding or editin
 
 * Dependencies used in this app are listed in  [**Pipfile**](https://github.com/AaronMillOro/Personal_Learning_Journal/blob/master/Pipfile).
 
-To run the application:
+## Test the application in terminal
 
-	1 Download the corresponding dependencies 
-	2 In your terminal/console type 'python3 app.py'
-	3 In your favorite browser type 'http://localhost:5000'
+1. Install and run 'pipenv' 
+
+		1 pipenv install
+		2 pipenv shell
+
+2. Download the corresponding dependencies in the virtual environment 
+
+		3 pip install -r requirements.txt
+		4 pipenv graph
+
+3. Run the application
+		
+		5 python3 app.py
+
+4. Open your favorite web browser and type
+
+		http://localhost:5000
 
 Enjoy! :shipit:
